@@ -1,0 +1,39 @@
+//{ Driver Code Starts
+#include<bits/stdc++.h>
+using namespace std;
+
+// } Driver Code Ends
+class Solution{
+	public:
+	vector<int>LargestFraction(int n, int d){
+	    // Code here
+	    int num=-1, den=1;
+	    vector<int> ans;
+	    for(int i=d+1;i<10000;i++){
+	        int x = (n * i) / d; 
+	        if (1.0 * x / i > 1.0 * num / den 
+            and __gcd(x, i) == 1) 
+            num = x, den = i; 
+    } 
+    ans.push_back(num); 
+    ans.push_back(den); 
+    return ans; 
+	    }
+};
+
+//{ Driver Code Starts.
+int main(){
+	int tc;
+	cin >> tc;
+	while(tc--){
+		int n, d;
+		cin >> n >> d;
+		Solution ob;
+		vector<int>ans = ob.LargestFraction(n, d);
+		for(auto i: ans)
+			cout << i <<" ";
+		cout << "\n";
+	}
+	return 0;
+}
+// } Driver Code Ends
