@@ -1,0 +1,68 @@
+//{ Driver Code Starts
+// Initial Template for C++
+
+// } Driver Code Ends
+// User function Template for C++
+#include <climits>
+class Solution {
+  public:
+    // Function to find the sum of contiguous subarray with maximum sum.
+    long long maxSubarraySum(int a[], int n) {
+        long long max_so_far = LLONG_MIN; // Initialize to the smallest possible value for long long
+    long long max_ending_here = 0;
+
+    for (int i = 0; i < n; i++) {
+        max_ending_here = max_ending_here + a[i];
+        
+        if (max_so_far < max_ending_here)
+            max_so_far = max_ending_here;
+
+        if (max_ending_here < 0)
+            max_ending_here = 0;
+    }
+
+    return max_so_far;
+    }
+};
+
+//{ Driver Code Starts.
+#include <bits/stdc++.h>
+using namespace std;
+
+//Position this line where user code will be pasted.
+
+int main() {
+    int t;
+    cin >> t;
+    cin.ignore(); // input testcases
+    while (t--)   // while testcases exist
+    {
+        vector<int> arr;
+        string input;
+        getline(cin, input); // Read the entire line for the array elements
+        stringstream ss(input);
+        int number;
+        while (ss >> number) {
+            arr.push_back(number);
+        }
+        int a[5];
+        if (!arr.empty() && arr[0] == 1) {
+            if (arr.size() >= 5) {
+                for (int i = 0; i < 5; ++i) {
+                    a[i] = arr[i];
+                }
+            } else {
+                continue;
+            }
+        } else {
+            for (int i = 0; i < 5; ++i) {
+                if (!(cin >> a[i])) {
+                    continue;
+                }
+            }
+        }
+        Solution ob;
+        cout << ob.maxSubarraySum(a, 5) << endl;
+    }
+}
+// } Driver Code Ends
