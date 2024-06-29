@@ -5,20 +5,26 @@ using namespace std;
 // } Driver Code Ends
 class Solution{
 	public:
-	vector<int>LargestFraction(int n, int d){
-	    // Code here
-	    int num=-1, den=1;
-	    vector<int> ans;
-	    for(int i=d+1;i<10000;i++){
-	        int x = (n * i) / d; 
-	        if (1.0 * x / i > 1.0 * num / den 
-            and __gcd(x, i) == 1) 
-            num = x, den = i; 
-    } 
-    ans.push_back(num); 
-    ans.push_back(den); 
-    return ans; 
-	    }
+vector<int>LargestFraction(int n, int d){
+        int r = 0, s = 1; //initialize variables r and s.
+        int limit = 10000; //set limit for the loop.
+
+        //loop to find the largest fraction.
+        for (int q = limit; q >= 2; q--)
+        {
+            int p = (n * q - 1) / d; //calculate the numerator p.
+            if (p * s >= r * q) //check if p * s is greater than or equal to r * q.
+            {
+                s = q; //update s.
+                r = p; //update r.
+            }
+        }
+        int D = __gcd(r, s); //calculate the greatest common divisor of r and s.
+        vector<int>res; //initialize a vector to store the result.
+        res.push_back(r/D); //store the numerator divided by D in the vector.
+        res.push_back(s/D); //store the denominator divided by D in the vector.
+        return res; //return the vector containing the result.
+    }
 };
 
 //{ Driver Code Starts.
