@@ -1,0 +1,65 @@
+//{ Driver Code Starts
+// C++ program to calculate sum of all numbers present
+// in a string containing alphanumeric characters
+#include <iostream>
+using namespace std;
+
+
+// } Driver Code Ends
+
+
+class Solution
+{
+    public:
+    //Function to calculate sum of all numbers present in a string.
+    int findSum(string str)
+    {
+    	  int sum = 0;
+    int currentNumber = 0;
+    bool inNumber = false;
+
+    for (int i = 0; i < str.length(); i++) {
+        if (str[i] >= '0' && str[i] <= '9') {
+            currentNumber = currentNumber * 10 + (str[i] - '0');
+            inNumber = true;
+        } 
+        //If the character is not a digit and we were processing a number (inNumber is true), add currentNumber to sum, reset currentNumber to 0, and set inNumber to false.
+        else {
+            if (inNumber) {
+                sum += currentNumber;
+                currentNumber = 0;
+                inNumber = false;
+            }
+        }
+    }
+    
+    // Add the last number if the string ends with digits
+    if (inNumber) {
+        sum += currentNumber;
+    }
+
+    return sum;
+    	
+    }
+};
+
+//{ Driver Code Starts.
+
+// Driver code
+int main()
+{
+	// input alphanumeric string
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    string str;
+	    cin>>str;
+	    Solution obj;
+	    cout << obj.findSum(str);
+        cout<<endl;
+	}
+	return 0;
+}
+
+// } Driver Code Ends
